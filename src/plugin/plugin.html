@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Extension BaLex</title>
+  <script src="../utils/logger.js"></script>
+  <link rel="stylesheet" href="../css/plugin.css">
+</head>
+<body>
+  <div id="extension-name">Extension BaLex</div>
+  
+  <!-- Section de connexion -->
+  <div id="auth-section">
+    <button id="auth-button">
+      <span id="auth-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M10 2a1 1 0 0 1 1 1v2h2V3a1 1 0 0 1 2 0v2h2a2 2 0 0 1 2 2v3h-2V7h-2v3a1 1 0 1 1-2 0V7h-2v3a1 1 0 1 1-2 0V7H6v3H4V7a2 2 0 0 1 2-2h2V3a1 1 0 0 1 1-1Z"/>
+        </svg>
+      </span>
+      <span id="auth-text">Se connecter</span>
+    </button>
+  </div>
+
+  <!-- Section des options de l'extension -->
+  <button id="toggleExtensionBtn">Activer/Désactiver</button>
+  <button id="toggleStatsBtn">Statistiques</button>
+  <button id="open-stats">Afficher les statistiques</button>
+    <!-- Indicateur de chargement de Pyodide -->
+  <div id="pyodide-loading"></div>
+
+  <!-- Section des options d'ajout automatique -->
+  <div id="stats-options" class="option-container">
+    <div id="auto-add-container" class="option-row auto-add-row">
+      <span>Ajout automatique</span>
+      <label class="toggle-switch">
+        <input type="checkbox" id="auto-add">
+        <span class="slider"></span>
+      </label>
+    </div>
+  <div id="auto-add-options" class="hidden">
+    <div class="option-row stopwords">
+      <span>Inclure mots outils</span>
+      <label class="toggle-switch">
+        <input type="checkbox" id="include-stopwords" />
+        <span class="slider"></span>
+      </label>
+    </div>
+    <div class="option-row threshold-container">
+      <label for="threshold">Seuil d'ajout d'un mot</label>
+      <input type="number" id="threshold" value="10" min="1" />
+    </div>
+    <div class="option-row">
+      <label>Langues suivies</label>
+      <div id="language-selection" class="language-selection">
+        <p id="loading-languages" style="color: gray;">Chargement...</p>
+      </div>
+    </div>
+      <!-- Message d'erreur si aucune langue sélectionnée -->
+      <div id="error-message" class="hidden">
+      <p>Veuillez sélectionner une ou plusieurs langue(s).</p>
+    </div>      
+    <button id="save-options" class="hidden">Valider</button>
+  </div>
+  </div>
+
+  <!-- Notification de l'extension -->
+  <div id="extension-notification" class="hidden">
+    <p id="notification-text"></p>
+    <button id="close-notification">OK</button>
+  </div>
+  
+  <script src="../utils/api.js"></script>
+  <script src="plugin.js"></script>
+</body>
+</html>

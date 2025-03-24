@@ -1,0 +1,95 @@
+{
+  "manifest_version": 2,
+  "name": "Extension BaLex",
+  "version": "1.0",
+  "description": "Extension Firefox de BaLex.",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "tabs",
+    "contextMenus",
+    "webNavigation",
+    "webRequest",
+    "webRequestBlocking",
+    "notifications",
+    "*://babalex.lezinter.net/*",
+    "*://prisms.lezinter.net/*",
+    "*://fr.wiktionary.org/*",
+    "<all_urls>"
+  ],
+
+  "background": {
+    "scripts": [
+      "src/utils/logger.js",
+      "src/background/background.js", 
+      "src/utils/definitions.js",
+      "src/utils/api.js",
+      "src/context_menu/browser_context_menu.js",
+      "src/utils/stats.js"
+    ],
+    "persistent": true
+  },
+
+  "browser_action": {
+    "default_area": "navbar",
+    "default_popup": "src/plugin/plugin.html",
+    "default_icon": {
+      "16": "src/assets/icons/logo.png"
+    },
+    "default_title": "ff2BaLex"
+  },
+
+  "sidebar_action": {
+    "default_title": "BaLex",
+    "default_panel": "src/sidebar/sidebar.html",
+    "default_icon": {
+      "16": "src/assets/icons/logo.png"
+    }
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"], 
+      "js": [
+        "src/utils/logger.js",
+        "src/assets/lexicon_icon.js",
+        "src/utils/api.js",
+        "src/utils/definitions.js",
+        "src/sidebar/sidebar.js",
+        "src/context_menu/custom_context_menu.js",
+        "src/utils/stats.js",
+        "src/utils/highlighting.js"
+      ],
+      "css": ["src/css/custom_context_menu.css"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["<all_urls>"],
+      "js": [
+        "src/utils/logger.js",
+        "src/utils/stats.js"
+      ],
+      "run_at": "document_end"
+    },
+    {
+      "matches": ["<all_urls>"],
+      "js": [
+        "src/utils/logger.js",
+        "src/utils/api.js",
+        "src/utils/highlighting.js"
+      ],
+      "run_at": "document_start"
+    }
+
+  ],
+
+  "web_accessible_resources": [
+    "src/*"
+  ],
+
+  "content_security_policy": "script-src 'self' https://cdn.jsdelivr.net; object-src 'self';",
+  
+  "icons": {
+    "16": "src/assets/icons/logo.png"
+  }
+}

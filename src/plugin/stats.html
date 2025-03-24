@@ -1,0 +1,56 @@
+<!-- stats.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Résumé des statistiques</title>
+  <script src="displayStats.js"></script>
+  <style>
+    /* Style global pour une présentation compacte et lisible */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 0;
+    }
+    #stats-container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    /* Contrôle de tri centré et espacé */
+    #sort-container {
+      margin: 20px 0;
+      text-align: center;
+    }
+    /* Tableaux compacts */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85em;
+      margin-bottom: 15px;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th, td {
+      padding: 6px 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #ae8bac;
+    }
+    h4 {
+      margin-bottom: 5px;
+    }
+    /* Optionnel : encadrer les tableaux dans un conteneur avec défilement si trop de lignes */
+    .table-container {
+      max-height: 300px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body>
+  <div id="stats-container">
+    <p>Chargement des statistiques…</p>
+  </div>
+</body>
+</html>

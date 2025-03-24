@@ -1,0 +1,431 @@
+/* Import de la police Luciole */
+@font-face {
+  font-family: 'Luciole';
+  src: url('../fonts/Luciole-Regular/Luciole-Regular.woff2') format('woff2'),
+      url('../fonts/Luciole-Regular/Luciole-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Style global */
+body {
+  font-family: Luciole;
+  font-size: medium;
+  margin: 0;
+  padding: 10px;
+  background-color: #525877;
+  color: #323046;
+}
+
+/* Conteneurs principaux */
+#menu, #etat, #definitionContainer {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background-color: #a08e9f;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  overflow: visible;
+}
+
+/* En-têtes et contenu des blocs */
+.block-header {
+  position: relative;
+  text-align: center;
+  margin-top: 2px;
+}
+.block-header h3 {
+  display: inline-block;
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+.block-content {
+  padding-top: 2px;
+}
+.hidden {
+  display: none;
+}
+
+/* Boutons */
+button {
+  font-family: Luciole;
+  width: 100%;
+  margin-top: 5px;
+  padding: 10px;
+  border: none;
+  background-color: #8d5c70;
+  color: #fbfcfc;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 5px;
+}
+button:hover {
+  background-color: #dddedd;
+  color: #8d5c70;
+}
+
+/* Bouton de connexion */
+#auth-button {
+  width: auto;
+  display: inline-flex;
+  padding: 6px 12px;
+  font-size: 16px;
+  font-family: Luciole;
+  background: none;
+  border: none;
+  color: white;
+  align-items: center;
+  gap: 6px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+#auth-button:hover {
+  background: rgba(255,255,255,0.2);
+}
+#auth-button svg {
+  width: 18px;
+  height: 18px;
+  fill: white;
+  transition: transform 0.3s ease-in-out;
+}
+#auth-button:hover svg {
+  transform: scale(1.1);
+}
+#auth-section {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+/* Boutons de bascule (toggle) */
+.toggle-btn {
+  position: absolute;
+  right: 8px;
+  background: none;
+  margin: 0;
+  border: none;
+  color: #fff;
+  font-size: 15px;
+  padding: 3px 5px;
+  cursor: pointer;
+  width: auto;
+  display: inline-block;
+}
+
+/* Mot sélectionné */
+#motSelectionne {
+  font-style: italic;
+  text-align: center;
+  margin-top: 5px;
+}
+
+/* Style des lexiques */
+.lexique-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  background-color: #dcdde1;
+  position: relative;
+}
+.lexique-item:hover {
+  background-color: #c4c7ce;
+}
+.lexique-label {
+  font-weight: bold;
+  color: #323046;
+  flex-grow: 1;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* Icône du lexique */
+.lexique-icon {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #ccc;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+/* Messages d'information (tooltips) */
+.tooltip {
+  all: unset;
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0,0,0,0.75);
+  color: #fff;
+  font-size: 12px !important;
+  font-weight: lighter !important;
+  padding: 6px 10px;
+  border-radius: 5px;
+  white-space: normal;            
+  overflow-wrap: break-word;     
+  width: 180px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out, transform 0.2s ease-in-out;
+  pointer-events: none;
+  z-index: 10;
+  line-height: normal;
+}
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  overflow: visible;
+}
+.tooltip-container:hover .tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-5px);
+}
+.tooltip-container.left .tooltip {
+  left: 0;
+  transform: translateX(0) translateY(-5px);
+}
+.tooltip-container.right .tooltip {
+  right: 0;
+  left: auto;
+  transform: translateX(0) translateY(-5px);
+}
+/* Tooltip pour le bouton de surlignage */
+button.lexique-highlight-toggle .tooltip {
+  all: unset;
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-5px);
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  font-size: 14px;
+  font-weight: lighter;
+  padding: 6px 10px;
+  border-radius: 5px;
+  white-space: normal;
+  overflow-wrap: break-word;
+  width: 180px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out, transform 0.2s ease-in-out;
+  pointer-events: none;
+  z-index: 10;
+  line-height: normal;
+}
+button.lexique-highlight-toggle:hover .tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-5px);
+}
+
+/* Section Lexique */
+.lexicon-section {
+  margin-bottom: 10px;
+}
+.lexicon-header {
+  position: relative;         
+  padding: 5px;
+  padding-right: 20px;        
+  background-color: #8d5c70;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.lexicon-header span {
+  display: block;
+  font-size: 13px;
+  line-height: 1.2;
+  text-align: center;
+}
+.lexicon-header:hover {
+  background-color: #dddedd;
+  color: #8d5c70;
+}
+.lexicon-content {
+  margin-top: 5px;
+  width: auto;
+}
+.lexicon-option {
+  margin-right: -10px;
+}
+#mesLexiquesList {
+  display: inline;
+  padding: 0;
+  align-items: center;
+}
+#mesLexiquesContainer h4 {
+  margin-bottom: 5px;
+}
+#wiktionnaireContainer h4 {
+  margin-bottom: 2px !important;
+}
+.balex-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;                
+  transform: translateY(-50%);
+  cursor: zoom-in;            
+  flex-shrink: 0;
+}
+
+/* Cases à cocher pour les lexiques */
+.lexique-checkbox {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #8d5c70;
+  border-radius: 5px;
+  background-color: #fff;
+  transition: background 0.3s ease, border-color 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+.lexique-checkbox:hover {
+  border-color: #6a3e50;
+}
+.lexique-checkbox:checked {
+  background-color: #8d5c70;
+  border-color: #8d5c70;
+}
+.lexique-checkbox:checked::after {
+  content: '✔';
+  font-size: 16px;
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Surlignage */
+.lexique-highlight-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px;
+  transition: transform 0.2s ease-in-out;
+  width: 15%;
+  position: relative;
+}
+.feutre-icon {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) saturate(100%) invert(40%) sepia(0%) saturate(0%) hue-rotate(0deg);
+  transition: filter 0.3s ease-in-out;
+}
+.lexique-highlight-toggle.active .feutre-icon,
+.lexique-highlight-toggle[data-active="true"] .feutre-icon {
+  filter: brightness(0) saturate(100%) invert(83%) sepia(89%) saturate(588%) hue-rotate(360deg);
+}
+.lexique-highlight-toggle:disabled .feutre-icon {
+  filter: brightness(0) saturate(100%) invert(40%) sepia(0%) saturate(0%) hue-rotate(0deg);
+}
+.lexicon-highlight {
+  position: relative;          
+  display: inline-block;
+  padding-bottom: 4px; 
+  border-bottom: 1px dashed #666;
+  transition: background-color 0.3s;
+  background-color: rgba(255, 255, 0, 0.15);
+
+}
+/* Bandes de couleurs pour le surlignage */
+.color-bands {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;      
+  display: flex;   
+}
+.color-bands div {
+  flex: 1;          
+  height: 100%;
+}
+#highlighting-options p {
+  margin: 5px 0;
+  font-size: small;
+  color: #333;
+}
+
+/* Section Définitions */
+.definition-item {
+  font-size: 13px;
+  padding-left: 10px;
+}
+#definitionContainer {
+  background-color: #444;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+}
+#definitionsList {
+  list-style: none;
+  padding: 2px;
+}
+#definitionsList li {
+  margin-bottom: 10px;
+}
+.definition-source {
+  font-weight: bold;
+  color: #ffa500;
+}
+#noDefinitionsContainer {
+  text-align: center;
+  font-weight: italic;
+  font-size: 12px;
+}
+#wiktionnaireList .definition-item {
+  font-size: 13px;
+  padding-left: 2px;
+  padding-top: 0;
+}
+#wiktionnaireList {
+  padding-left: 2px;
+}
+
+/* Modal de définition */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+.modal-content {
+  background: white;
+  color: #8d5c70;
+  padding: 1rem;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  border-radius: 8px;
+}
+.close-button {
+  float: right;
+  cursor: pointer;
+  font-weight: bold;
+  color: #666;
+}
+.close-button:hover {
+  color: #000;
+}
+
+/* Message si utilisateur déconnecté/analyse désactivée */
+#messageContainer {
+  display: none;
+  text-align: center;
+  color: #323046;
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BaLex - Barre Latérale</title>
+  <script src="../utils/logger.js"></script>
+  <script src="../assets/lexicon_icon.js" defer></script>
+  <script src="../utils/api.js" defer></script>
+  <script src="../utils/definitions.js" defer></script>
+  <script src="sidebar.js" defer></script>
+  <link rel="stylesheet" href="../css/sidebar.css">
+
+</head>
+<body>
+  <!-- Bouton de connexion -->
+  <div id="auth-section">
+    <button id="auth-button">
+      <span id="auth-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M10 2a1 1 0 0 1 1 1v2h2V3a1 1 0 0 1 2 0v2h2a2 2 0 0 1 2 2v3h-2V7h-2v3a1 1 0 1 1-2 0V7h-2v3a1 1 0 1 1-2 0V7H6v3H4V7a2 2 0 0 1 2-2h2V3a1 1 0 0 1 1-1Z"/>
+        </svg>
+      </span>
+      <span id="auth-text">Se connecter</span>
+    </button>
+  </div>
+
+  <!-- Bloc 1 : Menu des lexiques -->
+  <div id="menu">
+    <div class="block-header">
+      <h3>Lexiques</h3>
+      <button class="toggle-btn">+</button> <!-- Bouton pour afficher/masquer le bloc -->
+    </div>
+    <div id="menuContent" class="block-content hidden">
+      <div id="lexiques">Chargement...</div>
+    </div>
+  </div>
+
+  <!-- Bloc 2 : État de la sélection -->
+  <div id="etat">
+    <div class="block-header">
+      <h3>Mot sélectionné</h3>
+      <button class="toggle-btn"></button>
+    </div>
+    <div id="etatContent" class="block-content hidden">
+      <p id="motSelectionne">Aucun mot sélectionné</p>
+      <p id="lexiconResult"></p>
+      <div id="add-to-lexiques" style="display: none;">
+        <button id="add-word-button">Ajouter le mot sélectionné</button>
+      </div>
+      <button id="chercherDef">Rechercher une définition</button>
+      <div id="possible-definitions" style="display: none;"></div>
+    </div>
+  </div>
+
+  <!-- Bloc 3 : Définitions -->
+  <div id="definitionContainer">
+    <div class="block-header">
+      <h3>Définitions</h3>
+      <button class="toggle-btn"></button>
+    </div>
+    <div id="definitionContent" class="block-content hidden">
+      <div id="noDefinitionsContainer" style="display: none; color: #8d5c70;">
+      </div>
+      <!-- Définitions des lexiques de l'utilisateur -->
+      <div id="mesLexiquesContainer">
+        <h4>📚 Mes lexiques</h4>
+        <label style="font-size: 12px;">
+          <input type="checkbox" id="toggle-definitions">
+          Afficher toutes les définitions
+        </label>
+        <ul id="mesLexiquesList"></ul>
+      </div>
+      
+      <div id="noLexiconDefinitionsContainer" style="display: none; color: #8d5c70;">
+        <p>Aucune définition trouvée dans les lexiques.</p>
+      </div>
+      
+      <div id="noWiktionaryDefinitionsContainer" style="display: none; color: #8d5c70;">
+        <p>Aucune définition trouvée dans le Wiktionnaire.</p>
+      </div>  
+
+      <!-- Définitions issues du Wiktionnaire -->
+      <div id="wiktionnaireContainer">
+        <h4>🌍 Wiktionnaire</h4>
+        <ul id="wiktionnaireList"></ul>
+      </div>
+      
+      <!-- Fenêtre modale cachée pour afficher les détails-->
+      <div id="modalOverlay" class="modal-overlay">
+        <div class="modal-content">
+          <span id="closeModalBtn" class="close-button">X</span>
+          <div id="modalFullText"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bloc 4 : Message d'analyse désactivée -->
+  <div id="messageContainer">
+    <p id="analysisMessage"></p>
+  </div>
+
+</body>
+</html>

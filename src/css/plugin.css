@@ -1,0 +1,372 @@
+/* Import de la police Luciole */
+@font-face {
+    font-family: 'Luciole';
+    src: url('../fonts/Luciole-Regular/Luciole-Regular.woff2') format('woff2'),
+        url('../fonts/Luciole-Regular/Luciole-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Styles généraux */
+body {
+    font-family: Luciole;
+    font-size: medium;
+    margin: 0;
+    padding: 8px;
+    background-color: #525877;
+    color: #323046;
+    border-radius: 10px;
+    width: 200px;
+}
+.hidden {
+    display: none;
+}
+button {
+    font-family: Luciole;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background 0.3s, transform 0.2s;
+    background-color: #a08e9f;
+    color: white;
+}
+button:hover {
+    background-color: #dddedd;
+    color: #8d5c70;
+}
+
+/* En-tête de l'extension */
+#extension-name {
+    font-family: Luciole;
+    text-align: center;
+    font-size: 23px;
+    font-weight: bold;
+    padding: 5px;
+    color: #8d5c70; 
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: white;
+}
+
+/* Bouton de connexion */
+#auth-button {
+    width: auto;
+    display: inline-flex;
+    padding: 6px 12px;
+    font-size: 16px;
+    font-family: Luciole;
+    background: none;
+    border: none;
+    color: white;
+    align-items: center;
+    gap: 6px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.3s;
+    text-align: center;
+}
+#auth-button:hover {
+    background: rgba(255,255,255,0.2);
+}
+#auth-button svg {
+    width: 18px;
+    height: 18px;
+    fill: white;
+    transition: transform 0.3s ease-in-out;
+}
+#auth-button:hover svg {
+    transform: scale(1.1);
+}
+#auth-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+/* Options du menu de l'extension */
+.option-container {
+    background: #444;
+    padding: 8px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+.option-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    padding: 12px;
+    border-radius: 6px;
+    background-color: #444;
+    color: white;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.option-row:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.option-row label {
+    font-weight: lighter;
+    flex: 1;
+    margin: 0;
+    font-size: 13px;
+    align-items: center;
+}
+.option-row input[type="checkbox"],
+.option-row input[type="number"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #8d5c70;
+    border-radius: 50%;
+    background-color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+.option-row input[type="checkbox"]:checked {
+    background-color: #8d5c70;
+    border-color: #8d5c70;
+}
+
+/* Bouton pour ouvrir les statistiques */
+#open-stats {
+    padding: 6px;
+    font-weight: lighter;
+    width: auto;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    background-color: #525877;
+    color: white;
+    border: 2px solid #8d5c70;
+    border-radius: 8px;
+}
+
+/* Bloc d'options d'ajout automatique */
+.option-row.auto-add-row {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+    margin-bottom: 0;
+    background: transparent;        
+    border-bottom: 1px solid #555;    
+}
+.option-row.auto-add-row span {
+    font-size: 14px;
+    font-weight: lighter;
+}
+.option-row.stopwords {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: lighter;
+}
+
+/* Bouton pour afficher/masquer le bloc d'options d'ajout automatique et la sélection d'options*/
+.toggle-switch {
+    position: absolute;
+    display: inline-block;
+    width: 30px;
+    height: 16px;
+    right: 0;
+    left: auto;
+}
+.toggle-switch .slider:before {
+    position: absolute;
+    content: "";
+    width: 12px;       
+    height: 12px;      
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 24px;
+}
+input:checked + .slider {
+    background-color: #8d5c70;
+}
+input:checked + .slider:before {
+    transform: translateX(14px);
+}
+
+/* Conteneur pour le seuil d'ajout automatique */
+.threshold-container input[type="number"] {
+    width: 45px;   
+    height: 45px;
+    line-height: 50px;   
+    text-align: center;
+    border-radius: 50%;    
+    border: 2px solid #8d5c70;
+    font-size: 13px;
+    box-sizing: border-box;
+    background: #fff;
+    color: #333;
+}
+
+/* Sélection des langues */
+.language-selection {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.lang-option {
+    padding: 4px 10px;
+    border: 2px solid #8d5c70;
+    border-radius: 16px;
+    background: rgb(152, 152, 152);
+    color: #8d5c70;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background 0.3s, color 0.3s, transform 0.2s;
+}
+.lang-option:hover {
+    background: #8d5c70;
+    color: white;
+    transform: scale(1.05);
+}
+.lang-option.selected {
+    background: #8d5c70;
+    color: white;
+    border-color: #8d5c70;
+}
+
+/* Bouton pour enregistrer les options */
+#save-options {
+    border: none;
+    background: #8d5c70;
+    border-radius: 6px;
+    color: white;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+#save-options:hover {
+    background: #ccc;
+    color: #8d5c70;
+    transform: translateY(-2px);
+}
+
+/* Messages d'information (tooltips) */
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+    pointer-events: auto !important;
+}
+.tooltip {
+    all: unset;
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff !important;
+    font-size: 12px !important;
+    font-weight: lighter !important;
+    padding: 6px 10px;
+    border-radius: 5px;
+    white-space: normal;
+    overflow-wrap: break-word;
+    width: 200px;
+    text-align: center;
+    visibility: hidden;
+    transition: visibility 0.3s ease-in-out, transform 0.3s ease-in-out;
+    pointer-events: none;
+    z-index: 1000;
+    line-height: normal;
+}
+.tooltip-container .tooltip {
+    bottom: 120%;
+    transform: translateX(-50%);
+    background-color: rgba(0,0,0,0.9) !important;
+    visibility: hidden;
+    pointer-events: auto !important;
+}
+.tooltip-container:hover .tooltip {
+    visibility: visible !important;
+    transform: translateX(-50%) translateY(-5px);
+    pointer-events: auto !important;
+}
+#auth-button .tooltip {
+    top: 120%;
+    bottom: auto;
+}
+#auth-button.tooltip-container:hover .tooltip {
+    visibility: visible !important;
+    transform: translateX(-50%) translateY(5px);
+}
+/* Permettre l'interaction avec les tooltips même sur les boutons désactivés */
+button:disabled .tooltip {
+    pointer-events: auto !important;
+}
+
+.tooltip-langues-suivies {
+    left: 50% !important;
+    transform: translateX(-28%) !important;
+}
+
+/* Notifications et erreurs */
+#extension-notification {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    width: 80%;
+    max-width: 250px;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: visibility 0.3s ease;
+}
+#extension-notification.hidden {
+    visibility: hidden;
+}
+
+#close-notification {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #8d5c70;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+}
+#close-notification:hover {
+    background-color: #dddedd;
+    color: #8d5c70;
+}
+#error-message {
+    font-size: 13px;
+    font-style: italic;
+    text-align: center;
+    color: white;
+}
